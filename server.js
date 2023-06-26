@@ -28,8 +28,19 @@ app.post('/post', (req, res)=>{
 
 
     // code that will post data into Artists table
-    // the '?' corresponds to the number of columns present in the table.
-    // in this case three '?' reflect the three columns in Artist.
+    /*
+   Inserting a row into the "Artist" table
+   This statement inserts a new row of data into the "Artist" table. The specified column names and corresponding values are provided.
+   - INSERT INTO Artist:
+     Specifies the table name "Artist" where the data will be inserted.
+   - (name, email, label_id):
+     The column names in the "Artist" table where the corresponding values will be inserted.
+   - VALUES ($1, $2, $3):
+     Specifies the values to be inserted into the columns. The values are represented as placeholders ($1, $2, $3) to be replaced with the actual values in the corresponding order.
+   - $1, $2, $3:
+     Placeholders for the actual values that will be inserted into the table. The numbers after the $ symbol represent the parameter index/order.
+    */
+
     pool.query('INSERT INTO Artist (name, email, label_id) VALUES ($1, $2, $3)', [name, email, label_id], (error, res) => {
         if (error) {
             console.log("Not able to post values into table: " + error);
