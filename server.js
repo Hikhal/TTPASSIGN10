@@ -25,8 +25,6 @@ app.post('/post', (req, res)=>{
     // console.log(name + " " + email + " " + label_id)
     res.send("values successfully recieved.")
 
-
-
     // code that will post data into Artists table
     /*
    Inserting a row into the "Artist" table
@@ -49,16 +47,34 @@ app.post('/post', (req, res)=>{
         }
 
     });
-
-    pool.query("SELECT * FROM Artist", (error, res)=>{
-        try {
-            console.log(res.rows)
-            
-        } catch (error) {
-            console.log(error)
-        }
-    })
 })
+
+// Define a route handler for GET requests to the '/fetch' endpoint
+app.get('/fetch', (req, res) => {
+    // Execute a SQL query to select all records from the Artist table
+    pool.query("SELECT * FROM Artist", (error, result) => {
+        // If there's an error with the query, log the error and send 'Database error' as the response
+        if (error) {
+            console.log(error);
+            res.send('Database error');
+        } else {
+            // If there's no error, proceed to handle the results
+            // The 'rows' property contains an array of the records returned by the query
+            let r = result.rows;
+            // Check if there are at least two records
+            if (r.length >= 2) {
+                // If there are at least two records, send the last two records as the response which were inserted by me via postman.
+                res.send([r[r.length - 2], r[r.length - 1]]);
+            } else {
+                // If there are less than two records, send all records as the response
+                res.send(r);
+            }
+        }
+    });
+});
+
+
+
 
 app.listen(3000, (error) => {
     // Start the server on port 3000
