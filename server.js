@@ -3,12 +3,12 @@ const app = express();
 app.use(express.json()) 
 
 const artistRouter = require('./routes/artistRouter');
-// const albumRouter = require('./routes/albumRouter');
+const albumRouter = require('./routes/albumRouter');
 // const trackRouter = require('./routes/trackRouter');
 // const labelRouter = require('./routes/labelRouter');
 
 app.use('/artist', artistRouter);
-// app.use('/album', albumRouter);
+app.use('/album', albumRouter);
 // app.use('/track', trackRouter);
 // app.use('/label', labelRouter);
 
