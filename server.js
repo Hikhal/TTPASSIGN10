@@ -9,7 +9,7 @@ const labelRouter = require('./routes/labelRouter');
 
 app.use('/artist', artistRouter);
 app.use('/album', albumRouter);
-app.use('/track', table3Router);
+app.use('/track', trackRouter);
 app.use('/label', labelRouter);
 
 app.listen(3000, (error) => {
