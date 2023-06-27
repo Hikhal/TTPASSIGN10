@@ -20,7 +20,7 @@ router.post('/post', (req, res) => {
 });
 
 router.get('/fetch', (req, res) => {
-    con.query('SELECT * FROM Artist', (error, result) => {
+    con.query('SELECT * FROM Album', (error, result) => {
         if (error) {
             console.log(error);
             res.send("Database error");
